@@ -5,13 +5,13 @@ class Plane
 # one thing, do you need the 'if weather == sunny'? I think it can be removed 
   def land(airport:, weather:)
     land_storm_error if weather == :stormy
-    attempt_landing(airport) if weather == :sunny
+    attempt_landing(airport) 
   end
 
 # same as before, could the 'if weather == sunny' be removed?
   def take_off(airport:, weather:)
     takeoff_storm_error if weather == :stormy
-    attempt_takeoff(airport) if weather == :sunny
+    attempt_takeoff(airport) 
   end
 
   private
