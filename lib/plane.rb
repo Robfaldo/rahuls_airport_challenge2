@@ -1,11 +1,14 @@
 class Plane
   attr_reader :id
 
+# love this. SO clear and simple 
+# one thing, do you need the 'if weather == sunny'? I think it can be removed 
   def land(airport:, weather:)
     land_storm_error if weather == :stormy
     attempt_landing(airport) if weather == :sunny
   end
 
+# same as before, could the 'if weather == sunny' be removed?
   def take_off(airport:, weather:)
     takeoff_storm_error if weather == :stormy
     attempt_takeoff(airport) if weather == :sunny
@@ -13,6 +16,7 @@ class Plane
 
   private
 
+# lvoe this, clear and concise 
   def attempt_landing(airport)
     airport.land(self) ? true : airport_full_error
   end

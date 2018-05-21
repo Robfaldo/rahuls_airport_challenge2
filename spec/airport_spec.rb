@@ -1,7 +1,7 @@
 require "airport"
 
 describe Airport do
-
+# really like how you're swapping out all of this up here, makes the below much easier to read 
   let(:plane) { double :plane }
   let(:plane_a) { double :plane }
   let(:plane_b) { double :plane }
@@ -10,12 +10,15 @@ describe Airport do
   let(:another_airport) { described_class.new(25) }
   let(:capacity) { described_class::DEFAULT_CAPACITY }
 
+# could you break the #land and #take_off into describe blocks?
   context "landing and taking off" do
+    # You've split the expect lines into 2, would 1 not be easier to read? 
     it "#land - should make airport incorporate plane" do
       expect(airport.land(plane)).
         to be true
     end
 
+# is this a magic number? Could you use described.class::DEFAULT_CAPACITY.times instead?
     it "#land - should fail when airport is full" do
       100.times { airport.land(plane) }
       expect(airport.land(plane)).
@@ -33,6 +36,7 @@ describe Airport do
         to be false
     end
 
+# is this testing the right thing? Can the doubles represent different things?
     it "the same plane should take off" do
       airport.land(plane_a)
       airport.land(plane_b)
@@ -42,6 +46,7 @@ describe Airport do
     end
   end
 
+# Is this repeating the feature etsting capacity above? Could we not just do expect(capacity).to be true 
   context "other features" do
     it "should have a default capacity" do
       capacity.times { airport.land(plane) }
@@ -49,6 +54,8 @@ describe Airport do
         to be false
     end
 
+# does this not rely on default capacity not being 26 (or else this would pass without it being changed?). 
+# could it be capacity + 10 to get a different number?  
     it "'s capacity should be settable" do
       25.times { another_airport.land(plane) }
       expect(another_airport.land(plane)).
